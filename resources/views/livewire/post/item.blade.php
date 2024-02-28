@@ -7,7 +7,7 @@
         <div class="grid grid-cols-7 w-full gap-2">
 
             <div class="col-span-5">
-                <h5 class="font-semibold truncate text-sm">{{ fake()->name }}</h5>
+                <h5 class="font-semibold truncate text-sm">{{ $post->user->name }}</h5>
             </div>
 
             <div class="col-span-2 flex text-right justify-center">
@@ -44,22 +44,28 @@
                 },
             });" class="swiper h-[500px] boredr bg-white">
                 <!-- Additional required wrapper -->
-                <div x-cloak class="swiper-wrapper">
+                <ul x-cloak class="swiper-wrapper">
                     <!-- Slides -->
-                    <div class="swiper-slide"><x-video /></div>
-                    <div class="swiper-slide">
-                        <img src="https://cdn.pixabay.com/photo/2016/10/31/19/04/balloons-1786430_1280.jpg"
-                            alt="" class="h-[500px] w-full block object-scale-down">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://cdn.pixabay.com/photo/2016/10/31/19/04/balloons-1786430_1280.jpg"
-                            alt="" class="h-[500px] w-full block object-scale-down">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://cdn.pixabay.com/photo/2016/10/31/19/04/balloons-1786430_1280.jpg"
-                            alt="" class="h-[500px] w-full block object-scale-down">
-                    </div>
-                </div>
+
+                    @foreach ($post->media as $file)
+                        {{-- @dd($file->mime) --}}
+                        <li class="swiper-slide">
+                            @switch($file->mime)
+                                @case('video')
+                                    <x-video source="{{ $file->url }}" />
+                                @break
+
+                                @case('image')
+                                    <img src="{{ $file->url }}" alt=""
+                                        class="h-[500px] w-full block object-scale-down">
+                                @break
+
+                                @default
+                            @endswitch
+                        </li>
+                    @endforeach
+
+                </ul>
                 <!-- If we need pagination -->
                 <div class="swiper-pagination"></div>
 
@@ -133,11 +139,8 @@
 
         {{-- name and comments --}}
         <div class="flex text-sm gap-2 font-medium">
-            <p><strong class="font-bold">{{ fake()->name }}</strong>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia quibusdam aliquam, dolorem quaerat
-                facilis quas, sit iste animi veritatis expedita quisquam et, sunt voluptates? Est maxime quos commodi
-                voluptatum voluptates laudantium, molestias minima. Omnis in saepe veniam dolorum quia officiis non,
-                error illum beatae maxime vitae earum corporis perferendis eos?
+            <p><strong class="font-bold">{{ $post->user->name }}</strong>
+                {{ $post->description }}
             </p>
         </div>
 
