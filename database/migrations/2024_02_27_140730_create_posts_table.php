@@ -13,8 +13,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('description')->nullable();
             $table->string('location')->nullable();
-            $table->boolean('hide_like_view')->default('false');
-            $table->boolean('allow_commenting')->default('false');
+            $table->boolean('hide_like_view')->default(false);
+            $table->boolean('allow_commenting')->default(false);
             $table->enum('type', ['post', 'reel']);
             $table->timestamps();
         });
