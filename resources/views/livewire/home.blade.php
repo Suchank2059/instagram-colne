@@ -73,7 +73,7 @@
 
             <div class="flex items-center gap-2">
                 <x-avatar src="https://source.unsplash.com/500x500?face" class="h-12 1w-12" />
-                <h4 class="font-medium">{{ fake()->name }}</h4>
+                <h4 class="font-medium">{{ auth()->user()->name }}</h4>
             </div>
 
             <section class="mt-4">
