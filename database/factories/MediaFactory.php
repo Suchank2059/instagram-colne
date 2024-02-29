@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\MimeType;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -55,11 +56,11 @@ class MediaFactory extends Factory
     public function getMime($url): string
     {
         if (Str::contains($url, 'gtv-videos-bucket')) {
-            return 'video';
+            return MimeType::VIDEO->value;
         }
 
         if (Str::contains($url, 'images.unsplash.com')) {
-            return 'image';
+            return MimeType::IMAGE->value;
         }
     }
 
