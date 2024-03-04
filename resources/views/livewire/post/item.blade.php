@@ -147,7 +147,9 @@
         </div>
 
         {{-- view post modal --}}
-        <button class="text-slate-500/90 text-sm font-medium"> View all 488 comments
+        <button onClick="Livewire.dispatch('openModal',{component:'post.view.modal',arguements:{'post':{{ $post->id }}}}')"
+            class="text-slate-500/90 text-sm font-medium"> View all 488
+            comments
         </button>
 
         {{-- leave comment --}}

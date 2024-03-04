@@ -4,12 +4,9 @@ namespace App\Livewire\Post;
 
 use App\Enums\MimeType;
 use App\Enums\PostType;
-use App\Models\Media;
 use App\Models\Post;
 use App\Repository\MediaRepository;
 use App\Repository\PostRepository;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use Illuminate\Support\Str;
